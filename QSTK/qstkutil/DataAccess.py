@@ -23,6 +23,10 @@ import datetime as dt
 from QSTK.qstkutil.utils import cached_listdir
 import tempfile
 import copy
+import hashlib
+
+def md5(str):
+  return hashlib.md5(str.encode('utf-8')).hexdigest()
 
 class Exchange (object):
     AMEX = 1
@@ -435,20 +439,10 @@ class DataAccess(object):
 
         ls_syms_copy = copy.deepcopy(symbol_list)
 
-        # Create the hash for the symbols
-        hashsyms = 0
-        for i in symbol_list:
-            hashsyms = (hashsyms + hash(i)) % 10000000
-
-        # Create the hash for the timestamps
-        hashts = 0
-
         # print "test point 1: " + str(len(ts_list))
         # spyfile=os.environ['QSDATA'] + '/Processed/Norgate/Stocks/US/NYSE Arca/SPY.pkl'
-        for i in ts_list:
-            hashts = (hashts + hash(i)) % 10000000
-        hashstr = 'qstk-' + str (self.source)+'-' +str(abs(hashsyms)) + '-' + str(abs(hashts)) \
-            + '-' + str(hash(str(data_item))) #  + '-' + str(hash(str(os.path.getctime(spyfile))))
+        hashstr = 'qstk-' + str (self.source)+'-' +md5(str(symbol_list)) + '-' + md5(str(ts_list)) \
+            + '-' + md5(str(data_item))
 
         # get the directory for scratch files from environment
         # try:
