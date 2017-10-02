@@ -12,7 +12,7 @@ setup(
     include_package_data=True,
     long_description=open('README.md').read(),
     author_email='sourabh@sourabhbajaj.com',
-    url='https://github.com/tucker777/QuantSoftwareToolkit',
+    url='https://github.com/QuantSoftware/QuantSoftwareToolkit',
     license=open('LICENSE.txt').read(),
     description='QuantSoftware Toolkit',
     install_requires=[
@@ -22,6 +22,7 @@ setup(
         "pandas >= 0.7.3",
         "python-dateutil >= 2.0",
         "scikit-learn >= 0.11",
+        "cvxopt >= 1.1.3",
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
