@@ -5,10 +5,12 @@ import QSTK.qstkstudy.Events as ev
 import datetime as dt
 import QSTK.qstkstudy.EventProfiler as ep
 import numpy as np
+import QSTK.qstkutil.qsdateutil as du
+import QSTK.qstkutil.DataAccess as da
 
 if __name__ == '__main__':
 
-    ls_symbols = np.loadtxt('symbol-set1.txt',dtype='S10',comments='#')
+    ls_symbols = np.loadtxt('symbol-set1.txt',dtype='str',comments='#')
     dt_start = dt.datetime(2008,1,1)
     dt_end = dt.datetime(2009,12,31)
     ldt_timestamps = du.getNYSEdays( dt_start, dt_end, dt.timedelta(hours=16) )
@@ -20,5 +22,5 @@ if __name__ == '__main__':
 
     eventMatrix = ev.find_events(ls_symbols,d_data,verbose=True)
     ep.eventprofiler(eventMatrix, d_data,
-            i_lookback=20,i_lookforward=20,
-            s_filename="MyEventStudy")
+                     i_lookback=20, i_lookforward=20,
+                     s_filename='MyEventStudy.pdf')

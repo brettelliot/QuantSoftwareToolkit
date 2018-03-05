@@ -559,7 +559,7 @@ class DataAccess(object):
                     return (str(str(path1)+str(symbol_name)+".csv"))
                     #if ends
                 #for ends
-        print("Did not find path to " + str (symbol_name)+". Looks like this file is missing")    
+        print("Did not find path to " + str (symbol_name)+". Looks like this file is missing")
 
     def get_all_symbols (self):
         '''

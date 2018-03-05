@@ -15,9 +15,7 @@ Created on Jan 16, 2013
 import numpy as np
 import matplotlib.pyplot as plt
 
-import QSTK.qstkutil.DataAccess as da
 import QSTK.qstkutil.tsutil as tsu
-
 
 
 def eventprofiler(df_events_arg, d_data, i_lookback=20, i_lookforward=20,
@@ -25,6 +23,8 @@ def eventprofiler(df_events_arg, d_data, i_lookback=20, i_lookforward=20,
                 s_market_sym='SPY'):
     ''' Event Profiler for an event matix'''
     df_close = d_data['close'].copy()
+    print("df_close")
+    print(df_close)
     df_rets = df_close.copy()
 
     # Do not modify the original event dataframe.
@@ -66,6 +66,8 @@ def eventprofiler(df_events_arg, d_data, i_lookback=20, i_lookforward=20,
 
     # Study Params
     na_mean = np.mean(na_event_rets, axis=0)
+    # Change to percentage
+    #na_mean -= 1
     na_std = np.std(na_event_rets, axis=0)
     li_time = list(range(-i_lookback, i_lookforward + 1))
 
@@ -76,6 +78,7 @@ def eventprofiler(df_events_arg, d_data, i_lookback=20, i_lookforward=20,
         plt.errorbar(li_time[i_lookback:], na_mean[i_lookback:],
                     yerr=na_std[i_lookback:], ecolor='#AAAAFF',
                     alpha=0.7)
+    #plt.plot(li_time, na_mean, linewidth=3, label='mean', color='b')
     plt.plot(li_time, na_mean, linewidth=3, label='mean', color='b')
     plt.xlim(-i_lookback - 1, i_lookforward + 1)
     if b_market_neutral == True:

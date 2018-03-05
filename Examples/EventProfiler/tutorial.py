@@ -72,6 +72,7 @@ def find_events(ls_symbols, d_data):
 
 
 if __name__ == '__main__':
+    print("Collecting symbols and prices")
     dt_start = dt.datetime(2008, 1, 1)
     dt_end = dt.datetime(2009, 12, 31)
     ldt_timestamps = du.getNYSEdays(dt_start, dt_end, dt.timedelta(hours=16))

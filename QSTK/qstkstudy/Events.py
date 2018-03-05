@@ -3,14 +3,14 @@
 # http://wiki.quantsoftware.org/index.php?title=QSTK_License
 # for license details.
 
-#Created on October <day>, 2011
+# Created on October <day>, 2011
 #
-#@author: Vishal Shekhar
-#@contact: mailvishalshekhar@gmail.com
-#@summary: Example Event Datamatrix acceptable to EventProfiler App
+# @author: Vishal Shekhar
+# @contact: mailvishalshekhar@gmail.com
+# @summary: Example Event Datamatrix acceptable to EventProfiler App
 #
 
-import pandas 
+import pandas
 from QSTK.qstkutil import DataAccess as da
 import numpy as np
 import math
@@ -34,23 +34,24 @@ nan = no information about any event.
 1 = status bit(positively confirms the event occurence)
 """
 
-def find_events(symbols, d_data, verbose=False):
-	# Get the data from the data store
-	storename = "Yahoo" # get data from our daily prices source
-	# Available field names: open, close, high, low, close, actual_close, volume
-	closefield = "close"
-	volumefield = "volume"
-	window = 10
 
-	if verbose:
-            print(__name__ + " reading data")
-	close = d_data[closefield]
-	if verbose:
-            print(__name__ + " finding events")
-	for symbol in symbols:
-	    close[symbol][close[symbol]>= 1.0] = np.NAN
-	    for i in range(1,len(close[symbol])):
-	        if np.isnan(close[symbol][i-1]) and close[symbol][i] < 1.0 :#(i-1)th was > $1, and (i)th is <$1
-             		close[symbol][i] = 1.0 #overwriting the price by the bit
-	    close[symbol][close[symbol]< 1.0] = np.NAN
-	return close
+def find_events(symbols, d_data, verbose=False):
+    # Get the data from the data store
+    storename = "Yahoo"  # get data from our daily prices source
+    # Available field names: open, close, high, low, close, actual_close, volume
+    closefield = "close"
+    volumefield = "volume"
+    window = 10
+
+    if verbose:
+        print(__name__ + " reading data")
+    close = d_data[closefield]
+    if verbose:
+        print(__name__ + " finding events")
+    for symbol in symbols:
+        close[symbol][close[symbol] >= 1.0] = np.NAN
+        for i in range(1, len(close[symbol])):
+            if np.isnan(close[symbol][i - 1]) and close[symbol][i] < 1.0:  # (i-1)th was > $1, and (i)th is <$1
+                close[symbol][i] = 1.0  # overwriting the price by the bit
+        close[symbol][close[symbol] < 1.0] = np.NAN
+    return close
