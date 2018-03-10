@@ -673,6 +673,7 @@ class DataAccess(object):
                 # if ends
                 # for ends
         print("Did not find path to " + str(filename) + ". Looks like this file is missing")
+        print("Path: {0}".format(path1))
 
     def get_all_symbols(self):
         '''
