@@ -99,22 +99,13 @@ def find_events(ls_symbols, d_data):
 
 if __name__ == '__main__':
     print("Collecting symbols and prices")
-    dt_start = dt.datetime(2000, 1, 1)
-    dt_end = dt.datetime(2017, 12, 31)
+    dt_start = dt.datetime(2012, 1, 1)
+    dt_end = dt.datetime(2015, 12, 31)
     ldt_timestamps = du.getNYSEdays(dt_start, dt_end, dt.timedelta(hours=16))
 
     dataobj = da.DataAccess('AlphaVantage')
-    #dataobj = da.DataAccess('Yahoo')
-    #ls_symbols = dataobj.get_symbols_from_list('sp5002012')
-    #ls_symbols = ['ATI', 'AVY', 'AZO']
-    #ls_symbols = ['AOBC', 'OLN', 'RGR']
-    #ls_symbols = ['AAXN', 'AOBC', 'OLN', 'RGR']
-    #ls_symbols = ['RGR']
     ls_symbols = ['AAPL', 'MSFT']
     ls_symbols.append('SPY')
-
-    # Yahoo
-    #ls_keys = ['open', 'high', 'low', 'close']
 
     # AlphaVantage
     ls_keys = ['open', 'high', 'low', 'close']
