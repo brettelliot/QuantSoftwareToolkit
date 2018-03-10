@@ -310,11 +310,11 @@ class DataAccess(object):
                     list_index.append(2)
                 elif (sItem == DataItem.LOW):
                     list_index.append(3)
-                elif (sItem == DataItem.CLOSE):
+                elif (sItem == DataItem.ACTUAL_CLOSE):
                     list_index.append(4)
                 elif (sItem == DataItem.VOL):
                     list_index.append(5)
-                elif (sItem == DataItem.ADJUSTED_CLOSE):
+                elif (sItem == DataItem.CLOSE):
                     list_index.append(6)
                 else:
                     # incorrect value
